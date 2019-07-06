@@ -1,0 +1,13 @@
+{
+  "name": "lenses",
+  "version": "1.0.0",
+  "description": "Documentation QA Checks",
+  "main": "index.js",
+  "repository": "git@github.com:ocular-d/lenses",
+  "author": "ocular-d <sven@ocular-d.tech>",
+  "license": "GPLv2",
+  "private": false,
+  "devDependencies": {
+    "vuepress": "^1.0.0-rc.1"
+  }
+}
