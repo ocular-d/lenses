@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": "git@github.com:ocular-d/lenses",
   "author": "ocular-d <sven@ocular-d.tech>",
-  "license": "GPLv2",
+  "license": "GFDL-1.3-only",
   "private": false,
   "devDependencies": {
     "vuepress": "^1.0.0-rc.1"
