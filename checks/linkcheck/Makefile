@@ -9,7 +9,7 @@ RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
 # Name
-NAME = testthedocs/ttd-linkcheck
+NAME = oculard/linkcheck
 # Get version form VERSION
 VERSION := $(shell cat VERSION)
 
@@ -21,7 +21,7 @@ help: ## This help message
 
 .PHONY: build
 build: ## Builds docker image
-	docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f dockerfiles/Dockerfile .
+	docker build --no-cache=true -t $(NAME):$(VERSION) --rm Dockerfile .
 
 .PHONY: push
 push: ## Pushes images
