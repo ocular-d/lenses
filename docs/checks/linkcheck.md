@@ -1,6 +1,6 @@
 # Linkcheck
 
-::: tip Key Point
+::: tip Scope
 :bulb: Linkchecker for [Mardown](https://en.wikipedia.org/wiki/Markdown "Link to Markdown page on Wikipedia") (.`md`)
 and [reStructuredText](https://en.wikipedia.org/wiki/ReStructuredText "Link to rst page on Wikipedia") (.`rst`) source files.
 :::
@@ -9,6 +9,10 @@ and [reStructuredText](https://en.wikipedia.org/wiki/ReStructuredText "Link to r
 
 
 Based on [linkcheck](https://github.com/cytopia/linkcheck "Link to linkcheck website").
+
+## Table of contents
+
+[[toc]]
 
 ## Dependencies
 
@@ -38,6 +42,27 @@ workflows:
   btd:
     jobs:
       - "linkcheck"
+```
+
+### Travis
+
+```yaml
+---
+language: generic
+dist: xenial
+
+services:
+  - docker
+
+stages:
+  - test
+
+
+jobs:
+  include:
+    - stage: test
+      script:
+      - docker run -v `pwd`/docs:/srv/test oculard/linkcheck docs
 ```
 
 ## Settings
