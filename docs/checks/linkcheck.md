@@ -46,6 +46,11 @@ workflows:
 
 ### Travis
 
+![Image of running linkcheck with Travis 1](../assets/ocl-linkcheck-travis1.png)
+
+![Image of running linkcheck with Travis 2](../assets/ocl-linkcheck-travis2.png)
+
+
 ```yaml
 ---
 language: generic
@@ -63,6 +68,19 @@ jobs:
     - stage: test
       script:
       - docker run -v `pwd`/docs:/srv/test oculard/linkcheck docs
+```
+
+### Drone
+
+```yaml
+kind: pipeline
+name: default
+
+steps:
+- name: linkcheck
+  image: testthedocs/oculard-linkcheck
+  commands:
+    - su-exec ttd /usr/local/bin/linkcheck -c '200,301,302' -t 5 docs
 ```
 
 ## Settings
