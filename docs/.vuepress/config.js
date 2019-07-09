@@ -1,5 +1,6 @@
 module.exports = {
   title: 'Lenses',
+  plugins: {'@vuepress/medium-zoom': true},
   themeConfig: {
     logo: '/ocl-logo.png',
     nav: [
