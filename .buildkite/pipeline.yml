@@ -2,4 +2,4 @@ steps:
   - command: "su-exec ttd /usr/local/bin/linkcheck -c '200,301,302' -t 5 docs"
     plugins:
       - docker#v3.3.0:
-          image: "testthedocs/ttd-linkcheck-0.0.6"
+          image: "testthedocs/ttd-linkcheck:0.0.6"
