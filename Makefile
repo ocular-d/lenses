@@ -8,4 +8,4 @@ build:
 
 remark-docs:
 	@echo "Running remark against docs"
-	@yarn docs:remeark
+	@yarn docs:remark
