@@ -4,6 +4,7 @@ plugins:
   preset-lint-recommended:
   validate-links:
   lint-no-heading-punctuation:
+  lint-link-title-style:
   # Customized settings
   lint-list-item-indent: mixed
   lint-maximum-line-length: 150
