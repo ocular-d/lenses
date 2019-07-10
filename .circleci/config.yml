@@ -11,9 +11,17 @@ jobs:
           command: |
             su-exec ttd /usr/local/bin/linkcheck -c '200,301,302' -t 5 docs
 
+  "hadolint":
+    docker:
+      - image: hadolint/hadolint:latest-debian
+    steps:
+      - checkout
+      - run: hadolint checks/linkcheck/Dockerfile
+      - run: hadolint checks/remark/Dockerfile
 
 workflows:
   version: 2
   btd:
     jobs:
       - "linkcheck"
+      - "hadolint"
