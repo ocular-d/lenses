@@ -9,7 +9,7 @@ RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
 # Name
-NAME = testthedocs/ttd-remark
+NAME = testthedocs/remark
 # Get version form VERSION
 VERSION := $(shell cat VERSION)
 DOCKER := $(bash docker)
@@ -22,16 +22,16 @@ help: ## This help message
 
 .PHONY: build
 build: ## Builds docker image
-	docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f dockerfiles/Dockerfile .
+	@docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f dockerfiles/Dockerfile .
 
 .PHONY: push
 push: ## Pushes images
-	docker push $(NAME):$(VERSION)
-	docker push $(NAME):latest
+	@docker push $(NAME):$(VERSION)
+	@docker push $(NAME):latest
 
 .PHONY: tag_latest
 tag_latest: ## Tag image with version and latest tag
-	docker tag $(NAME):$(VERSION) $(NAME):latest
+	@docker tag $(NAME):$(VERSION) $(NAME):latest
 
 .PHONY: release
 release: check_release_version build tag_latest push tag_github ## Combine steps to make release
