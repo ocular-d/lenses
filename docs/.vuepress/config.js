@@ -4,9 +4,7 @@ module.exports = {
   themeConfig: {
     logo: '/ocl-logo.png',
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/' },
-      { text: 'External', link: 'https://google.com' },
+      { text: 'GitHub', link: 'https://github.com/ocular-d/lenses' },
     ],
     sidebar: [
       {
@@ -18,11 +16,12 @@ module.exports = {
       },
       {
         title: 'About',
-	collapsable: false,
+	      collapsable: false,
         children: [
-	  '/glossary',
-	]
+          '/glossary',
+          '/contributing',
+	      ]
       }
-    ] 
+    ]
   }
 }
