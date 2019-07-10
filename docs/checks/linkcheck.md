@@ -5,22 +5,21 @@
 and [reStructuredText](https://en.wikipedia.org/wiki/ReStructuredText "Link to rst page on Wikipedia") (.`rst`) source files.
 :::
 
-![Image of running linkcheck with CI/CD](../assets/demo-docs-linkcheck.png)
-
-
-Based on [linkcheck](https://github.com/cytopia/linkcheck "Link to linkcheck website").
-
-## Table of contents
+**Table of content**
 
 [[toc]]
-
-## Dependencies
-
-- [Docker](https://docker.com "Website of Docker")
 
 ## Continuous integration
 
 ### CircleCI
+
+[CircleCI](https://circleci.com/features "Link to CirecleCI site") is a cloud-based continuous integration server.
+
+It’s a hosted solution designed to reduce as much overhead as possible from the testing process.
+
+![Image of running linkcheck with CI/CD](../assets/demo-docs-linkcheck.png)
+
+Below is an example CircleCI pipeline (`.circleci/config.yml`) running linkcheck against the *docs* directory.
 
 ```yaml
 ---
@@ -44,12 +43,17 @@ workflows:
       - "linkcheck"
 ```
 
-### Travis
+For more information about the configuration, please check the [CircleCI documentation](https://circleci.com/docs/ "Link to CircleCI docs").
+
+### Travis CI
+
+[Travis CI](https://travis-ci.com/ "Link to Travis CI site") is a hosted continuous integration service used to build and test software projects hosted at [GitHub](https://github.com "Link to GitHub site").
 
 ![Image of running linkcheck with Travis 1](../assets/ocl-linkcheck-travis1.png)
 
 ![Image of running linkcheck with Travis 2](../assets/ocl-linkcheck-travis2.png)
 
+Below is an example Travis pipeline (`.travis.yml`) running linkcheck against the *docs* directory.
 
 ```yaml
 ---
@@ -70,7 +74,15 @@ jobs:
       - docker run -v `pwd`/docs:/srv/test oculard/linkcheck docs
 ```
 
+For more information about the configuration, please check the [Travis CI documentation](https://docs.travis-ci.com/ "Link to Travis docs").
+
 ### Drone
+
+[Drone](https://drone.io "Link to Drone site") is a self-service Continuous Delivery platform.
+
+![Image of running linkcheck with Drone](../assets/ocl-drone-linkcheck.png)
+
+Below is an example Travis pipeline (`.drone.yml`) running linkcheck against the *docs* directory.
 
 ```yaml
 kind: pipeline
@@ -83,10 +95,23 @@ steps:
     - su-exec ttd /usr/local/bin/linkcheck -c '200,301,302' -t 5 docs
 ```
 
+For more information about the configuration, please check the [Drone documentation](https://docs.drone.io/ "Link to Drone docs").
+
 ## Settings
 
-Default settings are configured in the [script itself](https://github.com/testthedocs/rakpart/blob/master/ttd-linkcheck/linkcheck "Link to source of script").
+As default linkcheck allows the following [HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status "Link to site with HTTP status codes")
 
+- `200 OK`
+- `301 Moved Permanently`
+- `302 Found`
+
+Check for `localhost` and `127.0.0.1` are ignored.
+
+```shell
+RL_REGEX_EXCLUDE="^http(s)?:\\/\\/(127\\.0\\.0\\.1)|(localhost).*$"
+```
+
+Settings are configured in the [script itself](https://github.com/testthedocs/rakpart/blob/master/ttd-linkcheck/linkcheck "Link to source of script").
 
 ```txt
 Usage: linkcheck [-e -i -t -r -c -k -l] [<path>]
@@ -146,9 +171,36 @@ Optional arguments:
           Defaults to current directory.
 ```
 
-## Local Usage
-  
+## Local usage
+
+To use linkcheck locally, please make sure that you have [Docker](https://docker.com "Link to website of Docker") installed.
+
+### Example
+
+Check out the [demo-docs](https://github.com/ocular-d/demo-docs "Link to dem-docs repository") repository:
+
+```shell
+git clone https://github.com:ocular-d/demo-docs.git
+```
+
+Change into the cloned repository:
+
+```shell
+cd demo-docs
+```
+
+Run linkcheck:
+
   ```shell
   docker run -it -v `pwd`:/srv/test oculard/linkcheck
   ```
 
+![Image of running linkcheck locally](../assets/ocl-linkcheck-local.png)
+
+## Information
+
+linkcheck is based on [cytopia/linkcheck](https://github.com/cytopia/linkcheck "Link to linkcheck website").
+
+### Dependencies
+
+- [Docker](https://docker.com "Website of Docker")

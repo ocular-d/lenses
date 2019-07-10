@@ -12,3 +12,4 @@ plugins:
   lint-no-duplicate-headings: false
   lint-maximum-heading-length: 80
   lint-heading-style: false
+  lint-no-emphasis-as-heading: false
