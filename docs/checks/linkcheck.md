@@ -180,7 +180,7 @@ To use linkcheck locally, please make sure that you have [Docker](https://docker
 Check out the [demo-docs](https://github.com/ocular-d/demo-docs "Link to dem-docs repository") repository:
 
 ```shell
-git clone https://github.com:ocular-d/demo-docs.git
+git clone https://github.com/ocular-d/demo-docs.git
 ```
 
 Change into the cloned repository:
