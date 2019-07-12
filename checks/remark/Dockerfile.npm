@@ -1,0 +1,14 @@
+FROM node:10.16.0-alpine
+
+WORKDIR /lint
+COPY package.json package.json .remarkrc.yaml ./
+#COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+RUN apk --no-cache add bash \
+	&& npm install package.json && npm link remark-cli
+
+WORKDIR /lint/input
+#USER ttd
+#ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/entrypoint.sh"]
+#ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/remark"]
+ENTRYPOINT ["/bin/bash"]

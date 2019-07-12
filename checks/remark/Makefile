@@ -22,7 +22,11 @@ help: ## This help message
 
 .PHONY: build
 build: ## Builds docker image
-	@docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f dockerfiles/Dockerfile .
+	@docker build -t $(NAME):$(VERSION) --rm -f Dockerfile .
+	
+.PHONY: build-no-cache
+build-no-cache: ## Build image without cache
+	@docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f Dockerfile .
 
 .PHONY: push
 push: ## Pushes images
