@@ -1,4 +1,4 @@
-FROM testthedocs/ci-base
+FROM testthedocs/ci-base:0.0.2
 
 LABEL maintainer "Sven <sven@ocular-d.tech>" \
     org.label-schema.vendor = "TestTheDocs" \
