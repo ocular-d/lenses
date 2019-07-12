@@ -28,7 +28,7 @@ version: 2
 jobs:
   "linkcheck":
     docker:
-        - image: testthedocs/cci-linkcheck:0.0.2
+        - image: testthedocs/linkcheck
     steps:
       - checkout
       - run:
@@ -71,7 +71,7 @@ jobs:
   include:
     - stage: test
       script:
-      - docker run -v `pwd`/docs:/srv/test oculard/linkcheck docs
+      - docker run -v `pwd`/docs:/srv/test testthedocs/linkcheck docs
 ```
 
 For more information about the configuration, please check the [Travis CI documentation](https://docs.travis-ci.com/ "Link to Travis docs").
@@ -90,7 +90,7 @@ name: default
 
 steps:
 - name: linkcheck
-  image: testthedocs/oculard-linkcheck
+  image: testthedocs/linkcheck
   commands:
     - su-exec ttd /usr/local/bin/linkcheck -c '200,301,302' -t 5 docs
 ```
@@ -191,8 +191,10 @@ cd demo-docs
 
 Run linkcheck:
 
+#### Docker
+
   ```shell
-  docker run -it -v `pwd`:/srv/test oculard/linkcheck
+  docker run -it -v `pwd`:/srv/test testthedocs/linkcheck
   ```
 
 ![Image of running linkcheck locally](../assets/ocl-linkcheck-local.png)
@@ -204,3 +206,7 @@ linkcheck is based on [cytopia/linkcheck](https://github.com/cytopia/linkcheck "
 ### Dependencies
 
 - [Docker](https://docker.com "Website of Docker")
+
+### Source Code
+
+The code of linkcheck is located on [GitHub](https://github.com/ocular-d/lenses/tree/master/checks/linkcheck "Link to source code of linkcheck on GitHub").

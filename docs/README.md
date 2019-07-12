@@ -1,7 +1,7 @@
 ---
 home: true
 actionText: Get Started →
-actionLink: /checks/
+actionLink: /intro
 footer: Made with 💚 by ocular-d
 ---
 
