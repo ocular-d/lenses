@@ -9,7 +9,7 @@ RESET=`tput sgr0`
 YELLOW=`tput setaf 3`
 
 # Name
-NAME = oculard/linkcheck
+NAME = testthedocs/linkcheck
 # Get version form VERSION
 VERSION := $(shell cat VERSION)
 
@@ -21,30 +21,30 @@ help: ## This help message
 
 .PHONY: build
 build: ## Builds docker image
-	docker build --no-cache=true -t $(NAME):$(VERSION) --rm Dockerfile .
+	@docker build --no-cache=true -t $(NAME):$(VERSION) --rm -f Dockerfile .
 
 .PHONY: push
 push: ## Pushes images
-	docker push $(NAME):$(VERSION)
-	docker push $(NAME):latest
+	@docker push $(NAME):$(VERSION)
+	@docker push $(NAME):latest
 
 .PHONY: tag_latest
 tag_latest: ## Tag image with version and latest tag
-	docker tag $(NAME):$(VERSION) $(NAME):latest
+	@docker tag $(NAME):$(VERSION) $(NAME):latest
 
 .PHONY: last_built_date
 last_built_date: ## Show last build date
 	docker inspect -f '{{ .Created }}' $(NAME):$(VERSION)
 
 .PHONY: release
-release: check_release_version build tag_latest push tag_github ## Combine steps to make release
+release: check_release_version build tag_latest push  ## Combine steps to make release
 
 .PHONY: check_release_version
 check_release_version:
 	@if docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(RED)$(NAME) version $(VERSION) is already build !$(RESET)"; false; fi
 
-.PHONY: tag_github
-tag_github: ## Tags the commit on GitHub with version nr.
-	@git tag -a $(NAME)-$(VERSION) -m "[release] $(VERSION) of $(NAME)" || true
-	@git push origin $(NAME)-$(VERSION)
+#.PHONY: tag_github
+#tag_github: ## Tags the commit on GitHub with version nr.
+#	@git tag -a $(NAME)-$(VERSION) -m "[release] $(VERSION) of $(NAME)" || true
+#	@git push origin $(NAME)-$(VERSION)
 
